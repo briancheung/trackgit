@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-def get_git_hash():
+def get_hash():
     """Returns the git description (shortened git hash)
 
     Parameters
@@ -15,7 +15,7 @@ def get_git_hash():
     label = subprocess.check_output(["git", "describe", "--always"]).strip()
     return label.decode('utf-8')
 
-def check_git_status():
+def get_commit_status():
     """Check if there's any modifications to commit in the repo 
 
     Parameters
@@ -33,7 +33,7 @@ def check_git_status():
         return False
     return True
 
-def make_git_tagged_dir(log_dir):
+def make_tagged_dir(log_dir):
     """Create a directory with git hash appened to directory name.
     
     Parameters
