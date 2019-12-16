@@ -1,18 +1,23 @@
 import os
 import subprocess
 
-def get_hash():
+def get_hash(short=True):
     """Returns the git description (shortened git hash)
 
     Parameters
     ----------
+    short : boolean
+        If true, use the short description hash. otherwise return the full hash.
 
     Returns
     -------
     label : string
-        Shortened git hash
+        git hash
     """
-    label = subprocess.check_output(["git", "describe", "--always"]).strip()
+    if short:
+        label = subprocess.check_output(["git", "describe", "--always"]).strip()
+    else:
+        label = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip()
     return label.decode('utf-8')
 
 def get_commit_status():
